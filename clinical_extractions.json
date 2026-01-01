@@ -1,0 +1,347 @@
+[
+  {
+    "id": 1,
+    "timestamp": "2026-01-01T17:36:57.235961",
+    "text": "DISCHARGE SUMMARY: 72-year-old male with history of type 2 diabetes mellitus \n    and hypertension. Admitted for chest pain, ruled out for myocardial infarction. \n    Continue metformin 1000mg BID, lisinopril 20mg daily, and aspirin 81mg daily.\n    Follow up with cardiology in 2 weeks.",
+    "entities": {
+      "CHEMICAL": [
+        {
+          "text": "type",
+          "confidence": 0.9950000047683716,
+          "start": 57,
+          "end": 61
+        },
+        {
+          "text": "hyper",
+          "confidence": 0.7760000228881836,
+          "start": 91,
+          "end": 96
+        },
+        {
+          "text": "chest",
+          "confidence": 0.996999979019165,
+          "start": 118,
+          "end": 123
+        },
+        {
+          "text": "my",
+          "confidence": 0.9980000257492065,
+          "start": 144,
+          "end": 146
+        },
+        {
+          "text": "met",
+          "confidence": 0.9990000128746033,
+          "start": 181,
+          "end": 184
+        },
+        {
+          "text": "l",
+          "confidence": 0.9990000128746033,
+          "start": 203,
+          "end": 204
+        },
+        {
+          "text": "##isi",
+          "confidence": 0.9269999861717224,
+          "start": 204,
+          "end": 207
+        },
+        {
+          "text": "as",
+          "confidence": 0.9990000128746033,
+          "start": 230,
+          "end": 232
+        }
+      ],
+      "DISEASE": [
+        {
+          "text": "2",
+          "confidence": 0.9850000143051147,
+          "start": 62,
+          "end": 63
+        },
+        {
+          "text": "diabetes",
+          "confidence": 0.9779999852180481,
+          "start": 64,
+          "end": 72
+        },
+        {
+          "text": "me",
+          "confidence": 0.996999979019165,
+          "start": 73,
+          "end": 75
+        },
+        {
+          "text": "##lli",
+          "confidence": 0.9919999837875366,
+          "start": 75,
+          "end": 78
+        },
+        {
+          "text": "##tus",
+          "confidence": 0.996999979019165,
+          "start": 78,
+          "end": 81
+        },
+        {
+          "text": "##tens",
+          "confidence": 0.9330000281333923,
+          "start": 96,
+          "end": 100
+        },
+        {
+          "text": "##ion",
+          "confidence": 0.9950000047683716,
+          "start": 100,
+          "end": 103
+        },
+        {
+          "text": "pain",
+          "confidence": 0.9959999918937683,
+          "start": 124,
+          "end": 128
+        },
+        {
+          "text": "##oc",
+          "confidence": 0.9860000014305115,
+          "start": 146,
+          "end": 148
+        },
+        {
+          "text": "##ard",
+          "confidence": 0.9940000176429749,
+          "start": 148,
+          "end": 151
+        },
+        {
+          "text": "##ial",
+          "confidence": 0.9980000257492065,
+          "start": 151,
+          "end": 154
+        },
+        {
+          "text": "in",
+          "confidence": 0.9980000257492065,
+          "start": 155,
+          "end": 157
+        },
+        {
+          "text": "##far",
+          "confidence": 0.9959999918937683,
+          "start": 157,
+          "end": 160
+        },
+        {
+          "text": "##ction",
+          "confidence": 0.996999979019165,
+          "start": 160,
+          "end": 165
+        },
+        {
+          "text": "##formin",
+          "confidence": 0.7400000095367432,
+          "start": 184,
+          "end": 190
+        },
+        {
+          "text": "##nopril",
+          "confidence": 0.9309999942779541,
+          "start": 207,
+          "end": 213
+        },
+        {
+          "text": "##pirin",
+          "confidence": 0.7739999890327454,
+          "start": 232,
+          "end": 237
+        }
+      ]
+    },
+    "medication_count": 8,
+    "condition_count": 17
+  },
+  {
+    "id": 2,
+    "timestamp": "2026-01-01T17:36:57.402913",
+    "text": "PROGRESS NOTE: Patient reports improvement in joint pain after starting \n    naproxen 500mg twice daily. Rheumatoid arthritis remains stable. \n    Continue current regimen of methotrexate 15mg weekly and folic acid 1mg daily.",
+    "entities": {
+      "CHEMICAL": [
+        {
+          "text": "joint",
+          "confidence": 0.8659999966621399,
+          "start": 51,
+          "end": 56
+        },
+        {
+          "text": "nap",
+          "confidence": 0.9990000128746033,
+          "start": 82,
+          "end": 85
+        },
+        {
+          "text": "rhe",
+          "confidence": 0.7799999713897705,
+          "start": 110,
+          "end": 113
+        },
+        {
+          "text": "met",
+          "confidence": 0.9990000128746033,
+          "start": 180,
+          "end": 183
+        },
+        {
+          "text": "f",
+          "confidence": 0.9909999966621399,
+          "start": 209,
+          "end": 210
+        }
+      ],
+      "DISEASE": [
+        {
+          "text": "pain",
+          "confidence": 0.8560000061988831,
+          "start": 57,
+          "end": 61
+        },
+        {
+          "text": "##roxen",
+          "confidence": 0.9760000109672546,
+          "start": 85,
+          "end": 90
+        },
+        {
+          "text": "##uma",
+          "confidence": 0.9760000109672546,
+          "start": 113,
+          "end": 116
+        },
+        {
+          "text": "##to",
+          "confidence": 0.9940000176429749,
+          "start": 116,
+          "end": 118
+        },
+        {
+          "text": "##id",
+          "confidence": 0.9950000047683716,
+          "start": 118,
+          "end": 120
+        },
+        {
+          "text": "art",
+          "confidence": 0.9980000257492065,
+          "start": 121,
+          "end": 124
+        },
+        {
+          "text": "##hr",
+          "confidence": 0.9980000257492065,
+          "start": 124,
+          "end": 126
+        },
+        {
+          "text": "##itis",
+          "confidence": 0.9980000257492065,
+          "start": 126,
+          "end": 130
+        },
+        {
+          "text": "##hotrexate",
+          "confidence": 0.8930000066757202,
+          "start": 183,
+          "end": 192
+        },
+        {
+          "text": "##olic acid",
+          "confidence": 0.9869999885559082,
+          "start": 210,
+          "end": 219
+        }
+      ]
+    },
+    "medication_count": 5,
+    "condition_count": 10
+  },
+  {
+    "id": 3,
+    "timestamp": "2026-01-01T17:36:57.582303",
+    "text": "ED NOTE: 45-year-old female presenting with acute migraine. Given sumatriptan \n    50mg PO with relief. History of anxiety disorder on sertraline 100mg daily.\n    Discharged home with instructions to follow up with neurology.",
+    "entities": {
+      "CHEMICAL": [
+        {
+          "text": "mi",
+          "confidence": 0.996999979019165,
+          "start": 55,
+          "end": 57
+        },
+        {
+          "text": "sum",
+          "confidence": 0.9990000128746033,
+          "start": 71,
+          "end": 74
+        },
+        {
+          "text": "##at",
+          "confidence": 0.6129999756813049,
+          "start": 74,
+          "end": 76
+        },
+        {
+          "text": "anxiety",
+          "confidence": 0.9990000128746033,
+          "start": 120,
+          "end": 127
+        },
+        {
+          "text": "se",
+          "confidence": 0.9990000128746033,
+          "start": 140,
+          "end": 142
+        },
+        {
+          "text": "##rt",
+          "confidence": 0.8610000014305115,
+          "start": 142,
+          "end": 144
+        }
+      ],
+      "DISEASE": [
+        {
+          "text": "##gra",
+          "confidence": 0.9340000152587891,
+          "start": 57,
+          "end": 60
+        },
+        {
+          "text": "##ine",
+          "confidence": 0.9919999837875366,
+          "start": 60,
+          "end": 63
+        },
+        {
+          "text": "##riptan",
+          "confidence": 0.9679999947547913,
+          "start": 76,
+          "end": 82
+        },
+        {
+          "text": "disorder",
+          "confidence": 0.996999979019165,
+          "start": 128,
+          "end": 136
+        },
+        {
+          "text": "##raline",
+          "confidence": 0.9620000123977661,
+          "start": 144,
+          "end": 150
+        }
+      ]
+    },
+    "medication_count": 6,
+    "condition_count": 5
+  }
+]

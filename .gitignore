@@ -1,0 +1,16 @@
+# Model weights (too large for GitHub)
+clinical_ner_model/
+clinical_ner_model_v2/
+*.bin
+*.safetensors
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Environment
+.env
+venv/
