@@ -1,12 +1,21 @@
 # clinical_ner_project-
-Clinical Named Entity Recognition (NER) with the dataset BC5CDR on HuggingFace, the pretrained model extracts medications, dosages, conditions and procedures from clinical notes
+A Clinical Named Entity Recognition system based on BioBERT, fine-tuned on the
+BC5CDR dataset to extract medications (CHEMICAL) and diseases (DISEASE) from
+clinical text.
 
- ## What we covered:
- 1. ✅ Using pre-trained biomedical NER models (zero training)
- 2. ✅ Loading and exploring the BC5CDR clinical dataset
- 3. ✅ Setting up fine-tuning with BioBERT
- 4. ✅ Building a complete extraction pipeline
- 5. ✅ Exporting structured results
+
+ ## Live Demo and Model links
+
+- 🤗 Hugging Face Model: https://huggingface.co/JoanaOA/clinical-ner-biobert-bc5cdr
+- 🚀 Live Demo (Gradio): https://huggingface.co/spaces/JoanaOA/clinical-ner-demo
+
+## 🧠 Model & Tools
+
+- BioBERT (transformers)
+- Fine-tuned on BC5CDR dataset
+- Hugging Face Transformers & Hub
+- Gradio for web interface
+- Python, PyTorch
 
 
 # ## Resources:
