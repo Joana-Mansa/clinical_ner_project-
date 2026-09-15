@@ -112,14 +112,8 @@ print(f"  Tags: {example['tags'][:15]}...")
 
 # Get label mapping
 print(dataset["train"].features)
-label_names = dataset["train"].features["tags"]
-label_names = [
-    "O",
-    "B-CHEMICAL",
-    "I-CHEMICAL",
-    "B-DISEASE",
-    "I-DISEASE"
-]
+# tner/bc5cdr dataset/label.json; preserve dataset IDs exactly.
+label_names = ["O", "B-CHEMICAL", "B-DISEASE", "I-DISEASE", "I-CHEMICAL"]
 
 print(f"\nLabel mapping:")
 for i, label in enumerate(label_names):
@@ -197,18 +191,9 @@ def tokenize_and_align_labels(examples):
             elif word_idx != previous_word_idx:
                 label_ids.append(label[word_idx])
             else:
-                prev_label = label[word_idx]
-                if prev_label == 1:
-                    label_ids.append(2)  # I-CHEMICAL
-                elif prev_label == 3:
-                    label_ids.append(4)  # I-DISEASE
-                elif prev_label == 2:
-                    label_ids.append(2)  # I-CHEMICAL
-                elif prev_label == 4:
-                    label_ids.append(4)  # I-DISEASE
-                else:
-                # For sub-tokens, use -100 (ignored in loss) or same label
-                    label_ids.append(0)
+                tag = label_names[label[word_idx]]
+                continuation = "I-" + tag[2:] if tag.startswith("B-") else tag
+                label_ids.append(label_names.index(continuation))
             previous_word_idx = word_idx
             
         labels.append(label_ids)
@@ -307,7 +292,7 @@ def compute_metrics(eval_preds):
 # Training arguments - using small subset for quick demo
 training_args = TrainingArguments(
     output_dir="./clinical_ner_model",
-    evaluation_strategy="epoch",
+    eval_strategy="epoch",
     save_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=16,
@@ -334,10 +319,10 @@ trainer = Trainer(
 
 # %% [markdown]
 # ## 2.3 Train the Model
-# Note: This will take ~10-15 minutes on CPU, ~2-3 minutes on GPU
+# Training time depends on dataset size and hardware. GPU recommended.
 
 # %%
-# Uncomment to train (or skip to use pre-trained model)
+# This tutorial trains when executed; use app.py for inference only.
 print("Starting training...")
 trainer.train()
 print("Training complete!")
@@ -345,10 +330,10 @@ trainer.save_model("./clinical_ner_model/final")
 tokenizer.save_pretrained("./clinical_ner_model/final")
 
 eval_results = trainer.evaluate(tokenized_dataset["test"])
-print(f"Test F1": {eval_results['eval_f1']:.3f})
+print(f"Test F1: {eval_results['eval_f1']:.3f}")
 
 # For quick demo, let's evaluate the base model without fine-tuning
-print("Evaluating base BioBERT model (before fine-tuning)...")
+print("Held-out test evaluation above uses the fine-tuned model.")
 # eval_results = trainer.evaluate()
 # print(f"\nEvaluation Results:")
 # print(f"  Precision: {eval_results['eval_precision']:.3f}")
@@ -365,7 +350,7 @@ class ClinicalNERPipeline:
     Combines multiple models for comprehensive extraction.
     """
     
-    def __init__(self, model_path="./clinical_ner_model"):
+    def __init__(self, model_path="./clinical_ner_model/final"):
         print("Initializing Clinical NER Pipeline...")
         
         # Load pre-trained model (use fine-tuned model path after training)

@@ -8,21 +8,25 @@ Then open: http://localhost:7860
 """
 
 import gradio as gr
-from transformers import pipeline
+from transformers import pipeline, AutoTokenizer
 import json
+import os
+from functools import lru_cache
+from pathlib import Path
 
 # ============================================================
 # Load the fine-tuned model
 # ============================================================
 
-print("Loading Clinical NER model...")
-ner_pipeline = pipeline(
-    "ner",
-    model="./clinical_ner_model/final",
-    tokenizer="./clinical_ner_model/final",
-    aggregation_strategy="simple"
-)
-print("Model loaded!")
+LOCAL_MODEL = Path("clinical_ner_model/final")
+MODEL_ID = os.environ.get("CLINICAL_NER_MODEL", str(LOCAL_MODEL) if (LOCAL_MODEL / "config.json").exists() else "JoanaOA/clinical-ner-biobert-bc5cdr")
+
+@lru_cache(maxsize=1)
+def get_ner_pipeline():
+    """Load the published model on first inference, or use a local override."""
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, model_max_length=512)
+    return pipeline("ner", model=MODEL_ID, tokenizer=tokenizer,
+                    aggregation_strategy="simple")
 
 
 # ============================================================
@@ -32,9 +36,9 @@ print("Model loaded!")
 def extract_entities(text):
     """Extract entities and organize by type"""
     if not text.strip():
-        return {}, "", ""
+        return {"CHEMICAL": [], "DISEASE": []}, []
     
-    raw_entities = ner_pipeline(text)
+    raw_entities = get_ner_pipeline()(text)
     
     # Organize by entity type
     organized = {"CHEMICAL": [], "DISEASE": []}
@@ -197,6 +201,9 @@ with gr.Blocks(
     *Powered by BioBERT fine-tuned on BC5CDR dataset*
     """)
     
+    if MODEL_ID == "JoanaOA/clinical-ner-biobert-bc5cdr":
+        gr.Markdown("**Checkpoint under review:** the published model uses a label map that differs from the source dataset. Its predictions can be incorrect. Retrain with the corrected tutorial and select the local checkpoint for evaluation.")
+
     with gr.Row():
         with gr.Column(scale=2):
             input_text = gr.Textbox(
@@ -254,7 +261,7 @@ with gr.Blocks(
     ---
     **About this project:**
     - Model: BioBERT fine-tuned on BC5CDR (BioCreative V CDR) dataset
-    - Entities: CHEMICAL (medications, drugs) and DISEASE (conditions, symptoms)
+    - Entities: CHEMICAL and DISEASE, as defined by the BC5CDR annotation scheme
     - Author: Joana Owusu-Appiah
     
     *For research and educational purposes only. Not for clinical decision-making.*
@@ -271,8 +278,8 @@ if __name__ == "__main__":
     print("="*50 + "\n")
     
     demo.launch(
-        server_name="0.0.0.0",  # Allow external access
+        server_name=os.environ.get("GRADIO_SERVER_NAME", "127.0.0.1"),
         server_port=7860,
-        share=True,  # Set to True for public link
+        share=False,
         show_error=True
     )

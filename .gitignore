@@ -14,3 +14,6 @@ __pycache__/
 # Environment
 .env
 venv/
+.gradio/
+.venv/
+__pycache__/
